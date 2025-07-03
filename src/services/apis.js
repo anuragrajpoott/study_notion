@@ -1,4 +1,6 @@
-const BASE_URL = "https://study-notion-1-cox3.onrender.com/api/v1"
+const BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:4000/api/v1'
+    : 'https://study-notion-1-cox3.onrender.com/api/v1'
 
 // AUTH ENDPOINTS
 export const endpoints = {
