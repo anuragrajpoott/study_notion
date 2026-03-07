@@ -1,132 +1,261 @@
-
-# StudyNotion - EdTech Platform
-
-
+# 📚 StudyNotion - EdTech Platform
 
 ![Main Page](images/mainpage.png)
-StudyNotion is a fully functional EdTech platform that enables users to create, consume, and rate educational content. The platform is built using the MERN stack, which includes ReactJS, NodeJS, MongoDB, and ExpressJS.
 
-## Table of Contents
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![Node](https://img.shields.io/badge/Backend-Node.js-green)
+![Express](https://img.shields.io/badge/Framework-Express-black)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-- [Introduction](#introduction)
-- [System Architecture](#system-architecture)
-  - [Front-end](#front-end)
-  - [Back-end](#back-end)
-  - [Database](#database)
-  - [Architecture Diagram](#architecture-diagram)
-- [API Design](#api-design)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
+StudyNotion is a **full-stack EdTech platform** built with the **MERN stack** that allows users to create, consume, and review educational content.  
+The platform provides a seamless learning experience for students and enables instructors to create and manage courses efficiently.
 
+---
 
-## Introduction
+# 🚀 Live Demo
 
-StudyNotion aims to provide a seamless and interactive learning experience for students, making education more accessible and engaging. Additionally, the platform serves as a platform for instructors to showcase their expertise and connect with learners across the globe.
+🔗 Live Website:  
+```
+https://your-live-link.com
+```
 
-In the following sections, we will cover the technical details of the platform, including the system architecture, API design, installation, usage instructions, and potential future enhancements.
+---
 
-## System Architecture
+# ✨ Features
 
-The StudyNotion EdTech platform consists of three main components: the front-end, the back-end, and the database. The platform follows a client-server architecture, with the front-end serving as the client and the back-end and database serving as the server.
+## 👨‍🎓 Student Features
 
-### Front-end
+- Browse all available courses
+- Add courses to wishlist
+- Purchase courses with Razorpay
+- Watch course videos
+- View enrolled courses
+- Rate and review courses
+- Update profile information
 
-The front-end of the platform is built using ReactJS, which allows for the creation of dynamic and responsive user interfaces, crucial for providing an engaging learning experience to students. The front-end communicates with the back-end using RESTful API calls.
+---
 
-#### Front End Pages
+## 👨‍🏫 Instructor Features
 
-For Students:
+- Create and manage courses
+- Upload videos and course materials
+- Track course performance
+- View analytics and insights
+- Edit instructor profile
 
-- **Homepage:** A brief introduction to the platform with links to the course list and user details.
-- **Course List:** A list of all the courses available on the platform, along with their descriptions and ratings.
-- **Wishlist:** Displays all the courses that a student has added to their wishlist.
-- **Cart Checkout:** Allows the user to complete course purchases.
-- **Course Content:** Presents the course content for a particular course, including videos and related material.
-- **User Details:** Provides details about the student's account, including their name, email, and other relevant information.
-- **User Edit Details:** Allows students to edit their account details.
+---
 
-For Instructors:
+## 🔐 Authentication Features
 
-- **Dashboard:** Offers an overview of the instructor's courses, along with ratings and feedback for each course.
-- **Insights:** Provides detailed insights into the instructor's courses, including the number of views, clicks, and other relevant metrics.
-- **Course Management Pages:** Enables instructors to create, update, and delete courses, as well as manage course content and pricing.
-- **View and Edit Profile Details:** Allows instructors to view and edit their account details.
+- Secure signup and login
+- JWT authentication
+- OTP email verification
+- Forgot password functionality
 
-#### Front-end Tools and Libraries
+---
 
-To build the front-end, we use frameworks and libraries such as ReactJS, CSS, and Tailwind for styling, and Redux for state management.
+# 🛠️ Tech Stack
 
-### Back-end
+## Frontend
 
-The back-end of the platform is built using NodeJS and ExpressJS, providing APIs for the front-end to consume. These APIs include functionalities such as user authentication, course creation, and course consumption. The back-end also handles the logic for processing and storing the course content and user data.
+- React.js
+- Redux
+- Tailwind CSS
+- Axios
 
-#### Back-end Features
+## Backend
 
-- **User Authentication and Authorization:** Students and instructors can sign up and log in to the platform using their email addresses and passwords. The platform also supports OTP (One-Time Password) verification and forgot password functionality for added security.
-- **Course Management:** Instructors can create, read, update, and delete courses, as well as manage course content and media. Students can view and rate courses.
-- **Payment Integration:** Students will purchase and enroll in courses by completing the checkout flow, followed by Razorpay integration for payment handling.
-- **Cloud-based Media Management:** StudyNotion uses Cloudinary, a cloud-based media management service, to store and manage all media content, including images, videos, and documents.
-- **Markdown Formatting:** Course content in document format is stored in Markdown format, allowing for easier display and rendering on the front-end.
+- Node.js
+- Express.js
+- JWT Authentication
+- Bcrypt
 
-#### Back-end Frameworks, Libraries, and Tools
+## Database
 
-The back-end of StudyNotion uses various frameworks, libraries, and tools to ensure its functionality and performance, including:
+- MongoDB
+- Mongoose
 
-- **Node.js:** Used as the primary framework for the back-end.
-- **Express.js:** Used as a web application framework, providing a range of features and tools for building web applications.
-- **MongoDB:** Used as the primary database, providing a flexible and scalable data storage solution.
-- **JWT (JSON Web Tokens):** Used for authentication and authorization, providing a secure and reliable way to manage user credentials.
-- **Bcrypt:** Used for password hashing, adding an extra layer of security to user data.
-- **Mongoose:** Used as an Object Data Modeling (ODM) library, providing a way to interact with MongoDB using JavaScript.
+## Other Tools
 
-#### Data Models and Database Schema
+- Cloudinary (Media storage)
+- Razorpay (Payment integration)
+- Markdown (Content formatting)
 
-The back-end of StudyNotion uses several data models and database schemas to manage data, including:
+---
 
-- **Student Schema:** Includes fields such as name, email, password, and course details for each student.
-- **Instructor Schema:** Includes fields such as name, email, password, and course details for each instructor.
-- **Course Schema:** Includes fields such as course name, description, instructor details, and media content.
+# 🏗️ System Architecture
 
-### Database
+StudyNotion follows a **client-server architecture**.
 
-The database for the platform is built using MongoDB, a NoSQL database that provides a flexible and scalable data storage solution. MongoDB allows for the storage of unstructured and semi-structured data. The database stores the course content, user data, and other relevant information related to the platform.
-
-![Database Schema](images/schema.png)
+- **Frontend** → React.js
+- **Backend** → Node.js + Express.js
+- **Database** → MongoDB
+- **Media Storage** → Cloudinary
+- **Payments** → Razorpay
 
 ### Architecture Diagram
 
-Below is a high-level diagram that illustrates the architecture of the StudyNotion EdTech platform:
-
 ![Architecture](images/architecture.png)
 
-## API Design
+---
 
-The StudyNotion platform's API is designed following the REST architectural style. The API is implemented using Node.js and Express.js. It uses JSON for data exchange and follows standard HTTP request methods such as GET, POST, PUT, and DELETE.
+# 🗂️ Project Structure
 
-For detailed API documentation and endpoints, refer to the [API Documentation](/api-docs).
+```
+StudyNotion
+│
+├── client
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── redux
+│   │   ├── services
+│   │   └── App.js
+│
+├── server
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── middleware
+│   └── config
+│
+├── images
+├── README.md
+└── package.json
+```
 
-## Installation
+---
 
-1. Clone the repository: `git clone https://github.com/username/repo.git`
-2. Navigate to the project directory: `cd StudyNotion`
-3. Install dependencies: `npm install`
+# 📸 Screenshots
 
-## Configuration
+### Homepage
 
-1. Set up a MongoDB database and obtain the connection URL.
-2. Create a `.env` file in the root directory with the following environment variables:
-   ```
-   MONGODB_URI=<your-mongodb-connection-url>
-   JWT_SECRET=<your-jwt-secret-key>
-   ```
+![Main Page](images/mainpage.png)
 
-## Usage
+### Course Page
 
-1. Start the server: `npm start`
-2. Open a new terminal and navigate to the `client` directory: `cd client`
-3. Start the React development server: `npm start`
+![Course Page](images/coursepage.png)
 
-Access the application in your browser at `http://localhost:3000`.
+### Dashboard
 
+![Dashboard](images/dashboard.png)
 
+---
+
+# 🔌 API Design
+
+The backend APIs follow the **REST architecture style**.
+
+| Method | Description |
+|------|-------------|
+| GET | Fetch data |
+| POST | Create data |
+| PUT | Update data |
+| DELETE | Remove data |
+
+Example API endpoints:
+
+```
+POST /api/auth/signup
+POST /api/auth/login
+GET /api/courses
+POST /api/course/create
+```
+
+---
+
+# ⚙️ Installation
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/studynotion.git
+```
+
+### 2️⃣ Navigate to the Project Folder
+
+```bash
+cd studynotion
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+# 🔧 Configuration
+
+Create a `.env` file in the root directory.
+
+```
+MONGODB_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+CLOUDINARY_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_cloudinary_key
+CLOUDINARY_API_SECRET=your_cloudinary_secret
+RAZORPAY_KEY=your_razorpay_key
+```
+
+---
+
+# ▶️ Run the Project
+
+### Start Backend
+
+```bash
+npm start
+```
+
+### Start Frontend
+
+```bash
+cd client
+npm start
+```
+
+Open in browser:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 📈 Future Improvements
+
+- Course certificates
+- Live classes
+- AI course recommendations
+- Instructor revenue analytics
+- Mobile app support
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!  
+Feel free to fork the repository and submit a pull request.
+
+---
+
+# 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Author
+
+**Your Name**
+
+GitHub:  
+https://github.com/yourusername
+
+LinkedIn:  
+https://linkedin.com/in/yourprofile
+
+---
