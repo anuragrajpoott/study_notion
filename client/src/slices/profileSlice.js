@@ -1,22 +1,29 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
+
+const getUserFromStorage = () => {
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : null;
+};
 
 const initialState = {
-    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
-    loading: false,
+  user: getUserFromStorage(),
+  loading: false,
 };
 
 const profileSlice = createSlice({
-    name:"profile",
-    initialState: initialState,
-    reducers: {
-        setUser(state, value) {
-            state.user = value.payload;
-        },
-        setLoading(state, value) {
-            state.loading = value.payload;
-          },
+  name: "profile",
+  initialState,
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
     },
+
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+  },
 });
 
-export const {setUser, setLoading} = profileSlice.actions;
+export const { setUser, setLoading } = profileSlice.actions;
+
 export default profileSlice.reducer;

@@ -1,16 +1,27 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+
   theme: {
+    /* =========================================
+    FONTS
+    ========================================= */
     fontFamily: {
       inter: ["Inter", "sans-serif"],
       "edu-sa": ["Edu SA Beginner", "cursive"],
       mono: ["Roboto Mono", "monospace"],
     },
+
+    /* =========================================
+    COLORS
+    ========================================= */
     colors: {
-      white: "#fff",
-      black: "#000",
+      white: "#ffffff",
+      black: "#000000",
       transparent: "#ffffff00",
+
+      /* Rich Black */
       richblack: {
         5: "#F1F2FF",
         25: "#DBDDEA",
@@ -25,6 +36,8 @@ module.exports = {
         800: "#161D29",
         900: "#000814",
       },
+
+      /* Rich Blue */
       richblue: {
         5: "#ECF5FF",
         25: "#C6D6E1",
@@ -39,6 +52,8 @@ module.exports = {
         800: "#01212A",
         900: "#001B22",
       },
+
+      /* Blue */
       blue: {
         5: "#EAF5FF",
         25: "#B4DAEC",
@@ -53,6 +68,8 @@ module.exports = {
         800: "#022B32",
         900: "#001B1D",
       },
+
+      /* Caribbean Green */
       caribbeangreen: {
         5: "#C1FFFD",
         25: "#83F1DE",
@@ -67,6 +84,8 @@ module.exports = {
         800: "#01321F",
         900: "#001B0D",
       },
+
+      /* Brown */
       brown: {
         5: "#FFF4C4",
         25: "#FFE395",
@@ -81,6 +100,8 @@ module.exports = {
         800: "#41260B",
         900: "#291100",
       },
+
+      /* Pink */
       pink: {
         5: "#FFF1F1",
         25: "#FBC7D1",
@@ -95,6 +116,8 @@ module.exports = {
         800: "#4F0A25",
         900: "#340019",
       },
+
+      /* Yellow */
       yellow: {
         5: "#FFF970",
         25: "#FFE83D",
@@ -109,6 +132,8 @@ module.exports = {
         800: "#3D2A01",
         900: "#251400",
       },
+
+      /* Pure Greys */
       "pure-greys": {
         5: "#F9F9F9",
         25: "#E2E2E2",
@@ -124,12 +149,17 @@ module.exports = {
         900: "#141414",
       },
     },
+
+    /* =========================================
+    EXTENSIONS
+    ========================================= */
     extend: {
       maxWidth: {
         maxContent: "1260px",
-        maxContentTab: "650px"
+        maxContentTab: "650px",
       },
     },
   },
+
   plugins: [],
 };

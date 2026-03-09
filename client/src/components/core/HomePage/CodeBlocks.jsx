@@ -1,7 +1,7 @@
-import React from "react";
-import CTAButton from "./Button";
-import { TypeAnimation } from "react-type-animation";
 import { FaArrowRight } from "react-icons/fa";
+import { TypeAnimation } from "react-type-animation";
+
+import CTAButton from "./Button";
 
 const CodeBlocks = ({
   position,
@@ -13,27 +13,26 @@ const CodeBlocks = ({
   backgroundGradient,
   codeColor,
 }) => {
+  const lineNumbers = Array.from({ length: 11 }, (_, i) => i + 1);
+
   return (
-    <div className={`flex ${position} my-20 justify-between flex-col lg:gap-10 gap-10`}>
-
-
-      {/* Section 1  */}
-      <div className="w-[100%] lg:w-[50%] flex flex-col gap-8">
+    <div className={`my-20 flex ${position} flex-col justify-between gap-10 lg:gap-10`}>
+      {/* Section 1 */}
+      <div className="flex w-full flex-col gap-8 lg:w-[50%]">
         {heading}
 
-        {/* Sub Heading */}
-        <div className="text-richblack-300 text-base font-bold w-[85%] -mt-3">
+        <div className="-mt-3 w-[85%] text-base font-bold text-richblack-300">
           {subheading}
         </div>
 
-        {/* Button Group */}
-        <div className="flex gap-7 mt-7">
+        <div className="mt-7 flex gap-7">
           <CTAButton active={ctabtn1.active} linkto={ctabtn1.link}>
             <div className="flex items-center gap-2">
               {ctabtn1.btnText}
               <FaArrowRight />
             </div>
           </CTAButton>
+
           <CTAButton active={ctabtn2.active} linkto={ctabtn2.link}>
             {ctabtn2.btnText}
           </CTAButton>
@@ -41,36 +40,29 @@ const CodeBlocks = ({
       </div>
 
       {/* Section 2 */}
-      <div className="h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]">
+      <div className="code-border relative flex h-fit w-full flex-row py-3 text-[10px] leading-[18px] sm:text-sm sm:leading-6 lg:w-[470px]">
         {backgroundGradient}
-        {/* Indexing */}
-        <div className="text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold ">
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-          <p>4</p>
-          <p>5</p>
-          <p>6</p>
-          <p>7</p>
-          <p>8</p>
-          <p>9</p>
-          <p>10</p>
-          <p>11</p>
+
+        {/* Line Numbers */}
+        <div className="flex w-[10%] select-none flex-col text-center font-inter font-bold text-richblack-400">
+          {lineNumbers.map((num) => (
+            <p key={num}>{num}</p>
+          ))}
         </div>
 
-        {/* Codes */}
+        {/* Code */}
         <div
-          className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-1`}
+          className={`flex w-[90%] flex-col gap-2 pr-1 font-mono font-bold ${codeColor}`}
         >
           <TypeAnimation
             sequence={[codeblock, 1000, ""]}
-            cursor={true}
+            cursor
             repeat={Infinity}
             style={{
               whiteSpace: "pre-line",
               display: "block",
             }}
-            omitDeletionAnimation={true}
+            omitDeletionAnimation
           />
         </div>
       </div>

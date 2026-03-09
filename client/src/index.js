@@ -1,28 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import rootReducer from "./reducer";
-import {configureStore} from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit";
 import { Toaster } from "react-hot-toast";
 
+import App from "./App";
+import rootReducer from "./reducer";
+import "./index.css";
 
 const store = configureStore({
-  reducer:rootReducer,
+  reducer: rootReducer,
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
-  <Provider store = {store}>
-    <BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
         <App />
-        <Toaster/>
+        <Toaster position="top-center" reverseOrder={false} />
       </BrowserRouter>
-  </Provider>
-    
-    
+    </Provider>
   </React.StrictMode>
 );

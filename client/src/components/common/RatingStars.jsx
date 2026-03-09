@@ -1,38 +1,43 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
   TiStarFullOutline,
   TiStarHalfOutline,
   TiStarOutline,
-} from "react-icons/ti"
+} from "react-icons/ti";
 
-function RatingStars({ Review_Count, Star_Size }) {
-  const [starCount, SetStarCount] = useState({
+function RatingStars({ reviewCount = 0, starSize = 20 }) {
+  const [starCount, setStarCount] = useState({
     full: 0,
     half: 0,
-    empty: 0,
-  })
+    empty: 5,
+  });
 
   useEffect(() => {
-    const wholeStars = Math.floor(Review_Count) || 0
-    SetStarCount({
-      full: wholeStars,
-      half: Number.isInteger(Review_Count) ? 0 : 1,
-      empty: Number.isInteger(Review_Count) ? 5 - wholeStars : 4 - wholeStars,
-    })
-  }, [Review_Count])
+    const fullStars = Math.floor(reviewCount);
+    const hasHalfStar = !Number.isInteger(reviewCount);
+
+    setStarCount({
+      full: fullStars,
+      half: hasHalfStar ? 1 : 0,
+      empty: hasHalfStar ? 4 - fullStars : 5 - fullStars,
+    });
+  }, [reviewCount]);
+
   return (
     <div className="flex gap-1 text-yellow-100">
-      {[...new Array(starCount.full)].map((_, i) => {
-        return <TiStarFullOutline key={i} size={Star_Size || 20} />
-      })}
-      {[...new Array(starCount.half)].map((_, i) => {
-        return <TiStarHalfOutline key={i} size={Star_Size || 20} />
-      })}
-      {[...new Array(starCount.empty)].map((_, i) => {
-        return <TiStarOutline key={i} size={Star_Size || 20} />
-      })}
+      {Array.from({ length: starCount.full }).map((_, i) => (
+        <TiStarFullOutline key={`full-${i}`} size={starSize} />
+      ))}
+
+      {Array.from({ length: starCount.half }).map((_, i) => (
+        <TiStarHalfOutline key={`half-${i}`} size={starSize} />
+      ))}
+
+      {Array.from({ length: starCount.empty }).map((_, i) => (
+        <TiStarOutline key={`empty-${i}`} size={starSize} />
+      ))}
     </div>
-  )
+  );
 }
 
-export default RatingStars
+export default RatingStars;
