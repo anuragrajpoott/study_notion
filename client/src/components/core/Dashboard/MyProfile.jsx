@@ -2,7 +2,7 @@ import { RiEditBoxLine } from "react-icons/ri"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { formattedDate } from "../../../utils/dateFormatter"
+import { formatDate } from "../../../utils/dateFormatter"
 import IconBtn from "../../common/IconBtn"
 
 export default function MyProfile() {
@@ -17,7 +17,7 @@ export default function MyProfile() {
   const contactNumber =
     user?.additionalDetails?.contactNumber ?? "Add Contact Number"
   const dateOfBirth =
-    formattedDate(user?.additionalDetails?.dateOfBirth) ?? "Add Date Of Birth"
+    formatDate(user?.additionalDetails?.dateOfBirth) ?? "Add Date Of Birth"
 
   const aboutTextColor = user?.additionalDetails?.about
     ? "text-richblack-5"

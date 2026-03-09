@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import {  useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
 
@@ -19,7 +19,7 @@ import { COURSE_STATUS } from "../../../../utils/constants"
 import ConfirmationModal from "../../../common/ConfirmationModal"
 
 export default function CoursesTable({ courses = [], setCourses }) {
-  const dispatch = useDispatch()
+ 
   const navigate = useNavigate()
   const { token } = useSelector((state) => state.auth)
 

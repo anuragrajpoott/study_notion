@@ -6,8 +6,8 @@ import Footer from "../components/common/Footer";
 import Error from "./Error";
 
 import { apiConnector } from "../services/apiconnector";
-import { categories } from "../services/apis";
-import { getCatalogaPageData } from "../services/operations/pageAndComponentData";
+import { categoriesEndpoints } from "../services/apis";
+import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 
 import CourseCard from "../components/core/Catalog/Course_Card";
 import CourseSlider from "../components/core/Catalog/CourseSlider";
@@ -23,7 +23,7 @@ const Catalog = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await apiConnector("GET", categories.CATEGORIES_API);
+        const res = await apiConnector("GET", categoriesEndpoints.CATEGORIES_API);
 
         const matchedCategory = res?.data?.data?.find(
           (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
@@ -43,7 +43,7 @@ const Catalog = () => {
   useEffect(() => {
     const fetchCategoryDetails = async () => {
       try {
-        const res = await getCatalogaPageData(categoryId);
+        const res = await getCatalogPageData(categoryId);
         setCatalogPageData(res);
       } catch (error) {
         console.error("CATALOG PAGE DATA ERROR:", error);
