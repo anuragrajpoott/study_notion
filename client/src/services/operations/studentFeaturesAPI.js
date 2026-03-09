@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { studentEndpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
 
-import rzpLogo from "../../assets/Logo/rzp_logo.png";
+
 
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
@@ -56,36 +56,38 @@ export const buyCourse = async (token, courses, userDetails, navigate, dispatch)
       throw new Error(orderResponse.data.message);
     }
 
-    const orderData = orderResponse.data.message;
+    const orderData = orderResponse.data.data;
 
     /* ---------- PAYMENT OPTIONS ---------- */
 
+    
+
     const options = {
-      key: process.env.RAZORPAY_KEY,
-      currency: orderData.currency,
-      amount: `${orderData.amount}`,
-      order_id: orderData.id,
+  key: process.env.REACT_APP_RAZORPAY_KEY,
+  currency: orderData.currency,
+  amount: orderData.amount,
+  order_id: orderData.id,
 
-      name: "StudyNotion",
-      description: "Thank you for purchasing the course",
-      image: rzpLogo,
+  name: "StudyNotion",
+  description: "Thank you for purchasing the course",
+  image: "https://razorpay.com/assets/razorpay-logo.svg",
 
-      prefill: {
-        name: userDetails.firstName,
-        email: userDetails.email,
-      },
+  prefill: {
+    name: userDetails.firstName,
+    email: userDetails.email,
+  },
 
-      handler: (response) => {
-        sendPaymentSuccessEmail(response, orderData.amount, token);
+  handler: (response) => {
+    sendPaymentSuccessEmail(response, orderData.amount, token);
 
-        verifyPayment(
-          { ...response, courses },
-          token,
-          navigate,
-          dispatch
-        );
-      },
-    };
+    verifyPayment(
+      { ...response, courses },
+      token,
+      navigate,
+      dispatch
+    );
+  },
+};
 
     const paymentObject = new window.Razorpay(options);
 

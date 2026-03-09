@@ -1,65 +1,76 @@
-import { useEffect, useRef, useState } from "react"
-import { FiUpload } from "react-icons/fi"
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useRef, useState } from "react";
+import { FiUpload } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 
-import { updateDisplayPicture } from "../../../../services/operations/SettingsAPI"
-import IconBtn from "../../../common/IconBtn"
+import { updateDisplayPicture } from "../../../../services/operations/SettingsAPI";
+import IconBtn from "../../../common/IconBtn";
 
 export default function ChangeProfilePicture() {
-  const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
+  const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.profile);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(false)
-  const [imageFile, setImageFile] = useState(null)
-  const [previewSource, setPreviewSource] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+  const [previewSource, setPreviewSource] = useState(user?.image || null);
 
-  const fileInputRef = useRef(null)
+  const fileInputRef = useRef(null);
 
+  /* ---------- OPEN FILE SELECTOR ---------- */
   const handleClick = () => {
-    fileInputRef.current?.click()
-  }
+    fileInputRef.current?.click();
+  };
 
+  /* ---------- PREVIEW IMAGE ---------- */
   const previewFile = (file) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
     reader.onloadend = () => {
-      setPreviewSource(reader.result)
-    }
-  }
+      setPreviewSource(reader.result);
+    };
+  };
 
+  /* ---------- HANDLE FILE CHANGE ---------- */
   const handleFileChange = (event) => {
-    const file = event.target.files?.[0]
-    if (!file) return
+    const file = event.target.files?.[0];
+    if (!file) return;
 
-    setImageFile(file)
-  }
+    setImageFile(file);
+  };
 
+  /* ---------- UPLOAD IMAGE ---------- */
   const handleFileUpload = async () => {
-    if (!imageFile) return
+    if (!imageFile) return;
 
-    setLoading(true)
+    const formData = new FormData();
+    formData.append("displayPicture", imageFile);
 
-    const formData = new FormData()
-    formData.append("displayPicture", imageFile)
+    setLoading(true);
 
     try {
-      await dispatch(updateDisplayPicture(token, formData))
+      await dispatch(updateDisplayPicture(token, formData));
+      setImageFile(null);
+    } catch (error) {
+      console.error("IMAGE UPLOAD ERROR:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
+  /* ---------- UPDATE PREVIEW WHEN FILE CHANGES ---------- */
   useEffect(() => {
     if (imageFile) {
-      previewFile(imageFile)
+      previewFile(imageFile);
     }
-  }, [imageFile])
+  }, [imageFile]);
 
   return (
     <div className="flex items-center justify-between rounded-md border border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5">
       <div className="flex items-center gap-x-4">
+
+        {/* PROFILE IMAGE */}
         <img
           src={previewSource || user?.image}
           alt={`profile-${user?.firstName}`}
@@ -67,36 +78,43 @@ export default function ChangeProfilePicture() {
         />
 
         <div className="space-y-2">
-          <p>Change Profile Picture</p>
+          <p className="font-medium">Change Profile Picture</p>
 
-          <div className="flex flex-row gap-3">
+          <div className="flex gap-3">
+
+            {/* FILE INPUT */}
             <input
               type="file"
               ref={fileInputRef}
               onChange={handleFileChange}
               className="hidden"
-              accept="image/png, image/gif, image/jpeg"
+              accept="image/png, image/jpeg, image/jpg"
             />
 
+            {/* SELECT BUTTON */}
             <button
               onClick={handleClick}
               disabled={loading}
-              className="cursor-pointer rounded-md bg-richblack-700 px-5 py-2 font-semibold text-richblack-50"
+              className="rounded-md bg-richblack-700 px-5 py-2 font-semibold text-richblack-50 disabled:opacity-50"
             >
               Select
             </button>
 
+            {/* UPLOAD BUTTON */}
             <IconBtn
               text={loading ? "Uploading..." : "Upload"}
-              onclick={handleFileUpload}
+              onClick={handleFileUpload}
+              disabled={loading || !imageFile}
             >
               {!loading && (
                 <FiUpload className="text-lg text-richblack-900" />
               )}
             </IconBtn>
+
           </div>
         </div>
+
       </div>
     </div>
-  )
+  );
 }

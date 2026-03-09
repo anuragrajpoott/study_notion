@@ -23,7 +23,7 @@ const Catalog = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await apiConnector("GET", categoriesEndpoints.CATEGORIES_API);
+        const res = await apiConnector("GET", categoriesEndpoints.GET_ALL_CATEGORIES);
 
         const matchedCategory = res?.data?.data?.find(
           (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import CountryCode from "../../data/countrycode.json";
 import { apiConnector } from "../../services/apiconnector";
 import { contactEndpoints } from "../../services/apis";
+import toast from "react-hot-toast";
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false);
@@ -16,15 +17,21 @@ const ContactUsForm = () => {
   } = useForm();
 
   const submitContactForm = async (formData) => {
-    try {
-      setLoading(true);
-      await apiConnector("POST", contactEndpoints.CONTACT_US, formData);
-    } catch (error) {
-      console.error("CONTACT FORM ERROR:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const toastId = toast.loading("Sending message...");
+
+  try {
+    setLoading(true);
+
+    await apiConnector("POST", contactEndpoints.CONTACT_US, formData);
+
+    toast.success("Message sent successfully!", { id: toastId });
+  } catch (error) {
+    console.error("CONTACT FORM ERROR:", error);
+    toast.error("Failed to send message.", { id: toastId });
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -37,6 +44,8 @@ const ContactUsForm = () => {
       });
     }
   }, [isSubmitSuccessful, reset]);
+
+
 
   return (
     <form
@@ -100,19 +109,22 @@ const ContactUsForm = () => {
         </label>
 
         <div className="flex gap-5">
-          <div className="flex w-[81px] flex-col gap-2">
-            <select
-              id="countrycode"
-              className="form-style"
-              {...register("countrycode", { required: true })}
-            >
-              {CountryCode.map((country) => (
-                <option key={country.code} value={country.code}>
-                  {country.code} - {country.country}
-                </option>
-              ))}
-            </select>
-          </div>
+           <div className="flex w-[81px] flex-col gap-2">
+    <select
+      id="countrycode"
+      className="form-style"
+      {...register("countrycode", { required: true })}
+    >
+      {CountryCode.map((country) => (
+        <option
+          key={`${country.code}-${country.country}`}
+          value={country.code}
+        >
+          {country.code} - {country.country}
+        </option>
+      ))}
+    </select>
+  </div>
 
           <div className="flex w-[calc(100%-90px)] flex-col gap-2">
             <input
