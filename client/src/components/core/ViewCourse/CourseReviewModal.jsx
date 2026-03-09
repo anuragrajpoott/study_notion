@@ -29,6 +29,9 @@ export default function CourseReviewModal({ setReviewModal }) {
   };
 
   const onSubmit = async (data) => {
+
+    console.log(data)
+
     await createRating(
       {
         courseId: courseEntireData._id,
@@ -113,7 +116,7 @@ export default function CourseReviewModal({ setReviewModal }) {
                 Cancel
               </button>
 
-              <IconBtn text="Save" />
+              <IconBtn text="Save"  type="submit"/>
             </div>
           </form>
         </div>
