@@ -74,6 +74,8 @@ export default function CourseInformationForm() {
   }
 
   const onSubmit = async (data) => {
+
+    
     if (editCourse) {
       if (!isFormUpdated()) {
         toast.error("No changes made to the form")
@@ -320,7 +322,7 @@ export default function CourseInformationForm() {
           </button>
         )}
 
-        <IconBtn disabled={loading} text={!editCourse ? "Next" : "Save Changes"}>
+        <IconBtn disabled={loading} text={!editCourse ? "Next" : "Save Changes"} type="submit">
           <MdNavigateNext />
         </IconBtn>
       </div>

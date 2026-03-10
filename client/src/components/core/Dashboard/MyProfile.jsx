@@ -46,7 +46,7 @@ export default function MyProfile() {
           </div>
         </div>
 
-        <IconBtn text="Edit" onclick={handleEdit}>
+        <IconBtn text="Edit" onClick={handleEdit}>
           <RiEditBoxLine />
         </IconBtn>
       </div>
@@ -55,7 +55,7 @@ export default function MyProfile() {
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">About</p>
 
-          <IconBtn text="Edit" onclick={handleEdit}>
+          <IconBtn text="Edit" onClick={handleEdit}>
             <RiEditBoxLine />
           </IconBtn>
         </div>
@@ -71,7 +71,7 @@ export default function MyProfile() {
             Personal Details
           </p>
 
-          <IconBtn text="Edit" onclick={handleEdit}>
+          <IconBtn text="Edit" onClick={handleEdit}>
             <RiEditBoxLine />
           </IconBtn>
         </div>

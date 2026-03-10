@@ -213,6 +213,7 @@ export default function SubSectionModal({
                     ? "Save Changes"
                     : "Save"
                 }
+                type="submit"
               />
             </div>
           )}
