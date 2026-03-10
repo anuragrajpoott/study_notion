@@ -32,7 +32,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://study-notion-nine-rho.vercel.app",
+      "https://study-notion-kappa-one.vercel.app",
     ],
     credentials: true,
   })
