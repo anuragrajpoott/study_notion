@@ -28,15 +28,11 @@ cloudinaryConnect();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://study-notion-ten-mu.vercel.app/",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://study-notion-ten-mu.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.use(
   fileUpload({
