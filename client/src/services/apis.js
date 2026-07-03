@@ -1,9 +1,6 @@
 /* ---------- Base URL ---------- */
 
-const BASE_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:4000/api/v1"
-    : "https://study-notion-5wg3.onrender.com/api/v1";
+const BASE_URL = "https://study-notion-hn3t.onrender.com";
 
 /* ---------- Auth Endpoints ---------- */
 
